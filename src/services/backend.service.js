@@ -7,12 +7,6 @@ const ENDPOINTS = {
     books: 'box_14927da9b840814951db',
     genres: 'box_c0bb9c6b3ad5dcaad561'
 };
-// const BASE_URL = "https://api.jsonbin.io/b";
-
-// const ENDPOINTS = {
-//     books: '5f4baff04d8ce4111383f880',
-//     genres: '5f4baf77514ec5112d117537'
-// }
 
 function backendService($http){
 
