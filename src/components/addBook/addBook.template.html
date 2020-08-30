@@ -1,0 +1,28 @@
+<div class="add-book-container">
+    <div class="inner">
+        <header>Add book - new book</header>
+        <h2>WIZARD STEPS</h2>
+        <main>
+            current: {{currentStep}}
+            <div ng-if="allGenres.length" ng-switch="currentStep">
+                <selection-list ng-switch-when="0"
+                                list="allGenres"
+                                on-select="addToSelection"
+                                selection-type="genre"
+                                display-prop="name">
+                </selection-list>
+                <selection-list ng-switch-when="1"
+                                list="getSubGenres()"
+                                on-select="addToSelection"
+                                selection-type="subgenre">
+                </selection-list>
+                <h2 ng-switch-when="3">add new book</h2>
+                <h2 ng-switch-when="add">add subgenre</h2>
+            </div>
+        </main>
+        <h2>
+            <button ng-click="moveStep(-1)">prev</button>
+            <button ng-click="moveStep(1)">next</button>
+        </h2>
+    </div>
+</div>

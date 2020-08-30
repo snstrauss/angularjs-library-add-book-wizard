@@ -8,15 +8,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <script src="./app.js"></script>
 
+    <link rel="stylesheet" href="./src/styles/main.css">
+
+    <!-- SERVICES -->
+    <script src="./src/services/backend.service.js"></script>
+    <script src="./src/services/books.service.js"></script>
+    <script src="./src/services/genre.service.js"></script>
+
     <!-- COMPONENTS -->
-    <script src="./src/components/addBook.directive.js"></script>
+    <script src="./src/components/books-list/booksList.directive.js"></script>
+    <script src="./src/components/addBook/addBook.directive.js"></script>
+    <script src="./src/components/selection-list/selection-list.directive.js"></script>
 </head>
 <body>
 
     this app: <br>
     <div ng-app="library-add-book">
-        this is add book:
-        <add-book></add-book>
+        this is books list:
+        <books-list></books-list>
     </div>
 
 </body>
