@@ -4,6 +4,7 @@ angular.module('library-add-book')
 function booksService(backendService){
     let allBooks = [];
 
+    let newBook = {};
     function getAllBooks(){
         return backendService.get('books').then(allBooksResponse => {
             allBooks = allBooksResponse;

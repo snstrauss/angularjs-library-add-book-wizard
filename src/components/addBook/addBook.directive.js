@@ -2,10 +2,10 @@
 APP.directive('addBook', () => ({
     restrict: 'E',
     templateUrl: 'src/components/addBook/addBook.template.html',
-    controller: ['$scope', 'genreService', addBookController]
+    controller: ['$scope', 'genreService', 'booksService', addBookController]
 }));
 
-function addBookController($scope, genreService){
+function addBookController($scope, genreService, booksService){
 
     $scope.currentStep = 0;
     $scope.allGenres = [];
@@ -18,24 +18,30 @@ function addBookController($scope, genreService){
         });
     }
 
-    $scope.moveStep = function moveStep(delta){
+    let lastRealStep;
+    $scope.moveStep = moveStep;
+    function moveStep(delta){
+        if(!Number.isInteger($scope.currentStep)){
+            $scope.currentStep = lastRealStep;
+        }
+
+        $scope.$broadcast('send-step-data');
         $scope.currentStep += delta;
+
+        if(Number.isInteger($scope.currentStep)){
+            lastRealStep = $scope.currentStep;
+        }
     }
 
-    $scope.addToSelection = function addToSelection(type, value){
-
-        debugger;
-        newBook[type] = value;
-
-        debugger;
-
-
+    $scope.addToSelection = addToSelection;
+    function addToSelection(type, value){
+        $scope.newBook[type] = value;
+        moveStep(1);
     }
 
-    $scope.getSubGenres = function getSubGenres(){
-
-        debugger;
-
+    $scope.openNewSubGenre = openNewSubGenre;
+    function openNewSubGenre(){
+        $scope.currentStep = 'add';
     }
 
     init();

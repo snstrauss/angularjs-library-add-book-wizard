@@ -1,5 +1,8 @@
 <div class="selection-list">
-    <button class="item" ng-repeat="item in list" ng-click="selected(item)">
+    <button class="item" ng-repeat="item in list" ng-click="typedSelection(item)">
         {{item[displayProp]}}
+    </button>
+    <button ng-if="extraSelection" ng-click="extraSelection.action()">
+        {{extraSelection.display}}
     </button>
 </div>

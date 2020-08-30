@@ -12,12 +12,19 @@
                                 display-prop="name">
                 </selection-list>
                 <selection-list ng-switch-when="1"
-                                list="getSubGenres()"
+                                list="newBook.genre.subgenres"
                                 on-select="addToSelection"
-                                selection-type="subgenre">
+                                selection-type="subgenre"
+                                display-prop="name"
+                                extra-selection="{
+                                    display: 'Add new',
+                                    action: openNewSubGenre
+                                }">
                 </selection-list>
-                <h2 ng-switch-when="3">add new book</h2>
-                <h2 ng-switch-when="add">add subgenre</h2>
+                <new-book-details ng-switch-when="2" book="newBook">
+                </new-book-details>
+                <new-subgenre ng-switch-when="add" parent-genre="newBook.genre">
+                </new-subgenre>
             </div>
         </main>
         <h2>

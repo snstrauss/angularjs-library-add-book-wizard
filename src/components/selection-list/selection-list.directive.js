@@ -6,30 +6,14 @@ APP.directive('selectionList', () => ({
         list: '=',
         onSelect: '=',
         displayProp: '@',
-        selectionType: '@'
+        selectionType: '@',
+        extraSelection: '='
     },
     controller: ['$scope', selectionListController]
 }));
 
 function selectionListController($scope){
 
-    debugger;
-
-    const typedSelection = $scope.onSelect.bind(null, $scope.selectionType);
-
-    debugger;
-
-    $scope.selected = function selected(thing){
-        console.log(thing);
-        debugger;
-
-        typedSelection(thing);
-    }
-    console.log($scope.list);
-    console.log($scope.onSelect);
-    console.log($scope.selectionType);
-
-    debugger;
-
+    $scope.typedSelection = $scope.onSelect.bind(null, $scope.selectionType);
 
 }
