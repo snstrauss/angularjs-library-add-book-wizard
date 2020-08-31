@@ -1,0 +1,6 @@
+<div class="step-indicator">
+    current in: {{currentStep}}
+    <div ng-repeat="step in steps" class="step" ng-class="{'current': currentStep === $index}">
+        {{step.display}}
+    </div>
+</div>

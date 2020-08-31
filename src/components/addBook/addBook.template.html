@@ -1,9 +1,12 @@
 <div class="add-book-container">
     <div class="inner">
-        <header>Add book - new book</header>
-        <h2>WIZARD STEPS</h2>
+        <header>
+            cuurent out: {{currentStep === 'add' ? lastRealStep + 1 : currentStep}}
+            <h2>Add book - new book</h2>
+            <step-indicator steps="steps" current-step="passedSteps"></step-indicator>
+        </header>
+
         <main>
-            current: {{currentStep}}
             <div ng-if="allGenres.length" ng-switch="currentStep">
                 <selection-list ng-switch-when="0"
                                 list="allGenres"

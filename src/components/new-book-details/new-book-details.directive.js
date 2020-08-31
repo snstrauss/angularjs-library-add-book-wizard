@@ -12,6 +12,4 @@ function newBookDetailsController($scope){
 
     console.log($scope.book);
 
-    debugger;
-
 }

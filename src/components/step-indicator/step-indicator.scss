@@ -1,0 +1,11 @@
+.step-indicator {
+    border: 1px solid hotpink;
+
+    .step {
+        color: blue;
+
+        &.current {
+            color: red;
+        }
+    }
+}

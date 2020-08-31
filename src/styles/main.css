@@ -17,6 +17,10 @@
   min-height: 70%;
 }
 
+.add-book-container .inner header {
+  border: 1px solid red;
+}
+
 .add-book-container .inner main {
   border: 2px solid blue;
 }
@@ -27,4 +31,16 @@
 
 .selection-list .item {
   border: 1px solid purple;
+}
+
+.step-indicator {
+  border: 1px solid hotpink;
+}
+
+.step-indicator .step {
+  color: blue;
+}
+
+.step-indicator .step.current {
+  color: red;
 }

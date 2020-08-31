@@ -5,31 +5,55 @@ APP.directive('addBook', () => ({
     controller: ['$scope', 'genreService', 'booksService', addBookController]
 }));
 
+const STEPS = [
+    {
+        display: 'Genre'
+    },
+    {
+        display: 'Subgenre'
+    },
+    {
+        display: 'Information'
+    }
+];
+
 function addBookController($scope, genreService, booksService){
 
     $scope.currentStep = 0;
+    $scope.steps = STEPS;
+
+    $scope.passedSteps = 0;
+
     $scope.allGenres = [];
 
     $scope.newBook = {};
 
     function init(){
+
+        console.log('INITIALIZE LINKED LIST');
+        debugger;
+
         genreService.getAllGenres().then(allGenresResponse => {
             $scope.allGenres = allGenresResponse;
         });
     }
 
-    let lastRealStep;
+    $scope.lastRealStep;
     $scope.moveStep = moveStep;
     function moveStep(delta){
+
+
         if(!Number.isInteger($scope.currentStep)){
-            $scope.currentStep = lastRealStep;
+            $scope.currentStep = $scope.lastRealStep;
         }
 
         $scope.$broadcast('send-step-data');
+        debugger;
         $scope.currentStep += delta;
+        $scope.passedSteps += delta;
 
         if(Number.isInteger($scope.currentStep)){
-            lastRealStep = $scope.currentStep;
+            $scope.lastRealStep = $scope.currentStep;
         }
     }
 
@@ -41,7 +65,18 @@ function addBookController($scope, genreService, booksService){
 
     $scope.openNewSubGenre = openNewSubGenre;
     function openNewSubGenre(){
+        addNewSubgenreStep();
         $scope.currentStep = 'add';
+    }
+
+    function addNewSubgenreStep(){
+
+        debugger;
+
+        $scope.passedSteps++;
+        $scope.steps.splice($scope.currentStep + 1, 0, {
+            display: 'Add new subgenre'
+        });
     }
 
     init();
