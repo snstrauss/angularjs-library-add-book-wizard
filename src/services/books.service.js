@@ -4,7 +4,6 @@ angular.module('library-add-book')
 function booksService(backendService){
     let allBooks = [];
 
-    let newBook = {};
     function getAllBooks(){
         return backendService.get('books').then(allBooksResponse => {
             allBooks = allBooksResponse;
@@ -12,7 +11,17 @@ function booksService(backendService){
         });
     }
 
+    function postNewBook(newBookData){
+        return backendService.post('books', newBookData);
+    }
+
+    const getPublishers = backendService.get.bind(null, 'publishers');
+    const getAuthors = backendService.get.bind(null, 'authors');
+
     return {
-        getAllBooks
+        getAllBooks,
+        postNewBook,
+        getPublishers,
+        getAuthors
     }
 }
