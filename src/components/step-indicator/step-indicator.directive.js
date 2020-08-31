@@ -10,7 +10,19 @@ APP.directive('stepIndicator', () => ({
 }));
 
 function stepIndicatorController($scope){
-    $scope.$watch('currentStep', (newStep) => {
 
+    const getAlts = (step) => step.alt;
+    const stepAlts = Object.values($scope.steps).filter(getAlts).map(getAlts);
+
+    $scope.stepsArr = Object.entries($scope.steps).map(([name, data]) => {
+        return {
+            name,
+            display: data.display || name,
+            isAlt: stepAlts.includes(name)
+        }
     });
+
+    $scope.isCurrentStep = function isCurrentStep(step){
+        return step.name === $scope.currentStep;
+    }
 }

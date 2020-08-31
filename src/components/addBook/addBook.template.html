@@ -1,20 +1,19 @@
 <div class="add-book-container">
     <div class="inner">
         <header>
-            cuurent out: {{currentStep === 'add' ? lastRealStep + 1 : currentStep}}
             <h2>Add book - new book</h2>
-            <step-indicator steps="steps" current-step="passedSteps"></step-indicator>
+            <step-indicator steps="steps" current-step="currentStep"></step-indicator>
         </header>
 
         <main>
             <div ng-if="allGenres.length" ng-switch="currentStep">
-                <selection-list ng-switch-when="0"
+                <selection-list ng-switch-when="genre"
                                 list="allGenres"
                                 on-select="addToSelection"
                                 selection-type="genre"
                                 display-prop="name">
                 </selection-list>
-                <selection-list ng-switch-when="1"
+                <selection-list ng-switch-when="subgenre"
                                 list="newBook.genre.subgenres"
                                 on-select="addToSelection"
                                 selection-type="subgenre"
@@ -24,15 +23,18 @@
                                     action: openNewSubGenre
                                 }">
                 </selection-list>
-                <new-book-details ng-switch-when="2" book="newBook">
-                </new-book-details>
                 <new-subgenre ng-switch-when="add" parent-genre="newBook.genre">
                 </new-subgenre>
+                <new-book-details ng-switch-when="information" book="newBook">
+                </new-book-details>
             </div>
         </main>
         <h2>
-            <button ng-click="moveStep(-1)">prev</button>
-            <button ng-click="moveStep(1)">next</button>
+            <button ng-repeat="direction in ['prev', 'next']" ng-click="moveStep(direction)">
+                {{direction}}
+            </button>
+            <!-- <button ng-click="moveStep('prev')">prev</button>
+            <button ng-click="moveStep('next')">next</button> -->
         </h2>
     </div>
 </div>

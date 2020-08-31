@@ -1,6 +1,5 @@
 <div class="step-indicator">
-    current in: {{currentStep}}
-    <div ng-repeat="step in steps" class="step" ng-class="{'current': currentStep === $index}">
+    <div ng-repeat="step in stepsArr" ng-if="!step.isAlt || isCurrentStep(step)" class="step" ng-class="{'current': isCurrentStep(step)}">
         {{step.display}}
     </div>
 </div>
