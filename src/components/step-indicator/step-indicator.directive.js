@@ -6,23 +6,29 @@ APP.directive('stepIndicator', () => ({
         steps: '=',
         currentStep: '='
     },
-    controller: ['$scope', stepIndicatorController]
+    controller: ['$scope', 'stepsService', stepIndicatorController]
 }));
 
-function stepIndicatorController($scope){
+function stepIndicatorController($scope, stepsService){
+
+    const steps = stepsService.getSteps();
 
     const getAlts = (step) => step.alt;
-    const stepAlts = Object.values($scope.steps).filter(getAlts).map(getAlts);
+    const stepAlts = Object.values(steps).filter(getAlts).map(getAlts);
 
-    $scope.stepsArr = Object.entries($scope.steps).map(([name, data]) => {
+    $scope.stepsArr = Object.values(steps).map(step => {
+
+        const { name } = step;
+
         return {
             name,
-            display: data.display || name,
+            display: step.display || name,
             isAlt: stepAlts.includes(name)
         }
     });
 
+
     $scope.isCurrentStep = function isCurrentStep(step){
-        return step.name === $scope.currentStep;
+        return step.name === stepsService.getCurrentStep().name;
     }
 }

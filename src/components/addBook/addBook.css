@@ -24,3 +24,11 @@
 .add-book-container .inner main {
   border: 2px solid blue;
 }
+
+.add-book-container .inner footer .move-button {
+  background-color: blue;
+}
+
+.add-book-container .inner footer .move-button.disabled {
+  background-color: red;
+}

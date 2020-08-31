@@ -2,13 +2,14 @@
 APP.directive('addBook', () => ({
     restrict: 'E',
     templateUrl: 'src/components/addBook/addBook.template.html',
-    controller: ['$scope', 'genreService', 'booksService', addBookController]
+    controller: ['$scope', 'genreService', 'booksService', 'stepsService', addBookController]
 }));
 
-function addBookController($scope, genreService, booksService){
+function addBookController($scope, genreService, booksService, stepsService){
 
     $scope.steps = {
         genre: {
+            start: true,
             next: 'subgenre'
         },
         subgenre: {
@@ -22,35 +23,42 @@ function addBookController($scope, genreService, booksService){
             next: 'information'
         },
         information: {
-            prev: 'subgenre'
+            prev: 'subgenre',
+            next: 'done'
+        },
+        done: {
+            prev: false,
+            next: 'genre'
         }
     };
 
-    $scope.currentStep = 'genre';
-
     $scope.allGenres = [];
     $scope.newBook = {};
+    $scope.getStep = stepsService.getCurrentStep;
 
     function init(){
+        stepsService.init($scope.steps);
+        $scope.currentStep = $scope.getStep();
+
         genreService.getAllGenres().then(allGenresResponse => {
             $scope.allGenres = allGenresResponse;
         });
     }
 
-    $scope.moveStep = function moveStep(direction){
-        $scope.currentStep = $scope.steps[$scope.currentStep][direction];
-        if(direction === 'next'){
-            $scope.$broadcast('send-step-data');
-        }
-    };
+    $scope.next = stepsService.next;
+    $scope.prev = stepsService.prev;
+
+    $scope.move = function move(direction){
+        $scope[direction]();
+    }
 
     $scope.addToSelection = function addToSelection(type, value){
         $scope.newBook[type] = value;
-        $scope.moveStep('next');
+        $scope.move('next');
     };
 
     $scope.openNewSubGenre = function openNewSubGenre(){
-        $scope.currentStep = 'add';
+        stepsService.goToStep('add');
     };
 
     init();

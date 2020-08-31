@@ -5,13 +5,13 @@ APP.directive('newSubgenre', () => ({
     scope: {
         parentGenre: '='
     },
-    controller: ['$scope', 'genreService', newSubgenreController]
+    controller: ['$scope', 'genreService', 'stepsService', newSubgenreController]
 }));
 
-function newSubgenreController($scope, genreService){
+function newSubgenreController($scope, genreService, stepsService){
 
-    $scope.$on('send-step-data', setNewSubgenre);
-    function setNewSubgenre(){
+    $scope.$on(stepsService.EVENTS.ON_NEXT, setNewSubgenre);
+    function setNewSubgenre(ev){
         genreService.setSubgenre({
             name: $scope.newSubgenre,
             isDescriptionRequired: $scope.description || false

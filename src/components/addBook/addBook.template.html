@@ -2,11 +2,11 @@
     <div class="inner">
         <header>
             <h2>Add book - new book</h2>
-            <step-indicator steps="steps" current-step="currentStep"></step-indicator>
+            <step-indicator></step-indicator>
         </header>
 
         <main>
-            <div ng-if="allGenres.length" ng-switch="currentStep">
+            <div ng-if="allGenres.length" ng-switch="getStep().name">
                 <selection-list ng-switch-when="genre"
                                 list="allGenres"
                                 on-select="addToSelection"
@@ -27,14 +27,17 @@
                 </new-subgenre>
                 <new-book-details ng-switch-when="information" book="newBook">
                 </new-book-details>
+                <h1 ng-switch-when="done">
+                    DONE
+                </h1>
             </div>
         </main>
-        <h2>
-            <button ng-repeat="direction in ['prev', 'next']" ng-click="moveStep(direction)">
+        <footer>
+            <button ng-repeat="direction in ['prev', 'next']" ng-click="move(direction)"
+                    ng-if="getStep()[direction] !== false" class="move-button"
+                    ng-disabled="!getStep()[direction]" ng-class="{'disabled': !getStep()[direction]}">
                 {{direction}}
             </button>
-            <!-- <button ng-click="moveStep('prev')">prev</button>
-            <button ng-click="moveStep('next')">next</button> -->
-        </h2>
+        </footer>
     </div>
 </div>
