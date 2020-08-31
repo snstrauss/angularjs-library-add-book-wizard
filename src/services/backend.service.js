@@ -2,32 +2,29 @@ angular.module('library-add-book')
 .factory('backendService', ['$http', backendService]);
 
 const BASE_URL = "https://jsonbox.io";
-
-const ENDPOINTS = {
-    books: 'box_14927da9b840814951db',
-    genres: 'box_c0bb9c6b3ad5dcaad561'
-};
+const JSON_BOX_ID = "box_30a9248ec8b716588c4f";
+const COLLECTIONS = ['books', 'genres'];
 
 function backendService($http){
 
-    function get(type){
+    function get(collection){
 
-        if(!type in ENDPOINTS){
-            return Promise.reject('NO SUCH TYPE ON BACKEND');
+        if(!COLLECTIONS.includes(collection)){
+            return Promise.reject('NO SUCH COLLECTION ON BACKEND');
         }
 
-        return $http.get(`${BASE_URL}/${ENDPOINTS[type]}`).then(res => {
+        return $http.get(`${BASE_URL}/${JSON_BOX_ID}/${collection}`).then(res => {
             return res.data;
         });
 
     }
 
-    function update(type, newGenre){
+    function update(collection, newGenre){
         console.log('CALL TO UPDATE SUBGENRES WITH: ');
         console.log(newGenre);
         console.log('- - - - - - - - - - - - -');
 
-        return $http.put(`${BASE_URL}/${ENDPOINTS[type]}/${newGenre._id}`, newGenre);
+        return $http.put(`${BASE_URL}/${JSON_BOX_ID}/${collection}/${newGenre._id}`, newGenre);
     }
 
     return {
