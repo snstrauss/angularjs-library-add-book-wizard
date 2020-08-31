@@ -1,3 +1,52 @@
 .new-book-details {
-    border: 2px solid palevioletred;
+    border: 5px solid deeppink;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+
+    $full: #{"1 / 4"};
+    $lastTwoRows: #{"9 / 11"};
+
+    $fieldsMap: (
+        bookTitle: (
+            column: $full
+        ),
+        author: (
+            column: $full
+        ),
+        ISBN: (
+            column: $full
+        ),
+        publisher: (
+            column: $full
+        ),
+        datePublished: (),
+        numberOfPages: (),
+        format: (),
+        edition: (),
+        editionLanguage: (
+            column: 2,
+            row: 8
+        ),
+        description: (
+            column: $full,
+            row: $lastTwoRows
+        )
+    );
+
+    @each $className, $values in $fieldsMap {
+        $index: index((map-keys($fieldsMap)), ($className));
+        .#{$className} {
+            grid-row: map-get($values, 'row') or $index;
+            grid-column: map-get($values, 'column') or 1;
+        }
+    }
+
+    .description {
+        textarea {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
