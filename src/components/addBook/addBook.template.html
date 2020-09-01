@@ -43,9 +43,13 @@
         <footer>
             <mui-button size="small" color="primary" ng-repeat="direction in ['prev', 'next']"
                         ng-click="move(direction)" ng-class="{'disabled': !getStep()[direction]}"
-                        ng-if="getStep()[direction] !== false" ng-disabled="!getStep()[direction]">
+                        ng-if="getStep()[direction] !== false" ng-disabled="shouldDisable(direction)">
                 {{direction}}
             </mui-button>
         </footer>
+
+        <div class="close" ng-click="close()">
+            X
+        </div>
     </mui-panel>
 </div>

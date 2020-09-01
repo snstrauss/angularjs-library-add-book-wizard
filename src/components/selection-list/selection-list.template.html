@@ -1,7 +1,7 @@
 <div class="selection-list">
     <form>
         <label ng-repeat="item in list">
-            <mui-button variant="flat" ng-click="typedSelection(item, $index)" ng-class="{'selected': $index === selected}">
+            <mui-button variant="flat" ng-click="typedSelection(item, $index)" ng-class="{'selected': ($index === selected) || (selectedData === item[displayProp])}">
                 {{item[displayProp]}}
             </mui-button>
         </label>

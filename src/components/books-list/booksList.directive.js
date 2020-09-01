@@ -29,5 +29,9 @@ function booksListController($scope, booksService){
         $scope.showAddBookWizard = true;
     };
 
+    $scope.close = function close(){
+        $scope.showAddBookWizard = false;
+    };
+
     init();
 }

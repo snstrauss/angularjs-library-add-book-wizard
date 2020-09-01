@@ -2,10 +2,14 @@
 APP.directive('addBook', () => ({
     restrict: 'E',
     templateUrl: 'src/components/addBook/addBook.template.html',
-    controller: ['$scope', '$timeout', 'genreService', 'booksService', 'stepsService', addBookController]
+    scope: {
+        close: '='
+    },
+    controller: ['$scope', '$timeout', 'genreService', 'booksService',
+                    'stepsService', 'validationService', addBookController]
 }));
 
-function addBookController($scope, $timeout, genreService, booksService, stepsService){
+function addBookController($scope, $timeout, genreService, booksService, stepsService, validationService){
 
     $scope.steps = {
         genre: {
@@ -36,9 +40,10 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
     $scope.allGenres = [];
     $scope.newBook = {};
     $scope.getStep = stepsService.getCurrentStep;
+    $scope.isStepValid = validationService.isCurrentStepValid;
 
-    $scope.$watch($scope.getStep, (newStep) => {
-        if(newStep.name === 'genre'){
+    $scope.$watch($scope.getStep, (newStep, prevStep) => {
+        if(newStep.name === 'genre' && prevStep.name === 'done'){
             initializeNewBook();
         }
     });
@@ -48,6 +53,7 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
     }
 
     function init(){
+        initializeNewBook();
         stepsService.init($scope.steps);
         $scope.currentStep = $scope.getStep();
 
@@ -77,6 +83,12 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
             $scope.clickedAddSubgenre = false;
         }, 500)
     };
+
+    $scope.shouldDisable = function shouldDisable(direction){
+        return $scope.getStep().name !== 'done'
+                && direction === 'next'
+                && !validationService.isCurrentStepValid();
+    }
 
     init();
 }

@@ -27,7 +27,6 @@ function booksService($rootScope, backendService){
     }
 
     function getNewBook(shouldReset){
-
         if(shouldReset){
             newBook = {};
         }

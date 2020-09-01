@@ -2,15 +2,17 @@
 APP.directive('newBookDetails', () => ({
     restrict: 'E',
     templateUrl: 'src/components/new-book-details/new-book-details.template.html',
-    controller: ['$scope', '$q', 'booksService', 'stepsService', 'camelCaseFilter', newBookDetailsController]
+    controller: ['$scope', '$timeout', 'booksService', 'stepsService', 'camelCaseFilter', 'validationService',
+                    newBookDetailsController]
 }));
 
 const mapJustName = (item) => item.name;
 
-function newBookDetailsController($scope, $q, booksService, stepsService, camelCaseFilter){
+function newBookDetailsController($scope, $timeout, booksService, stepsService, camelCaseFilter, validationService){
 
     $scope.camelCase = camelCaseFilter;
 
+    const detailNames = [];
     function init(){
 
         $scope.book = booksService.getNewBook();
@@ -41,9 +43,19 @@ function newBookDetailsController($scope, $q, booksService, stepsService, camelC
         }];
     }
 
-    $scope.selectionClicked = function selectionClicked(type, value){
-        $scope.book[type] = value;
-    };
+    let typingTimeout;
+    $scope.$watch('book', () => {
+
+        $timeout.cancel(typingTimeout);
+
+        typingTimeout = $timeout(() => {
+            validationService.updateValidation($scope.newBookDetails.every(detail => {
+                const existingValue = $scope.book[camelCaseFilter(detail.label)];
+                return existingValue && existingValue.length;
+            }))
+        }, 750)
+
+    }, true);
 
     $scope.$on(stepsService.EVENTS.ON_NEXT, () => {
         $scope.book.genre = $scope.book.genre.name;
