@@ -3,7 +3,7 @@ angular.module('library-add-book')
 
 function validationService(stepsService){
 
-    const validations = {};
+    let validations = {};
     const getStep = stepsService.getCurrentStep;
 
     function updateValidation(isValid){
@@ -14,8 +14,13 @@ function validationService(stepsService){
         return validations[getStep().name];
     }
 
+    function resetValidations(){
+        validations = {};
+    }
+
     return {
         updateValidation,
-        isCurrentStepValid
+        isCurrentStepValid,
+        resetValidations
     }
 }

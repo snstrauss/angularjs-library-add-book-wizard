@@ -1,5 +1,5 @@
 angular.module('library-add-book')
-.factory('genreService', ['backendService', genreService]);
+.factory('genreService', ['$q', 'backendService', genreService]);
 
 function cleanGenreName(genre){
     return parseInt(genre.name.replace('Genre ', ''));
@@ -9,14 +9,14 @@ function byGenreName(a, b){
     return cleanGenreName(a) - cleanGenreName(b);
 }
 
-function genreService(backendService){
+function genreService($q, backendService){
 
     const RESOURCE_TYPE = 'genres';
 
     let allGenres = [];
 
     function getAllGenres(){
-        return allGenres.length ? allGenres : backendService.get(RESOURCE_TYPE).then(allGenresResponse => {
+        return allGenres.length ? $q.resolve(allGenres) : backendService.get(RESOURCE_TYPE).then(allGenresResponse => {
             allGenres = allGenresResponse.sort(byGenreName);
             return allGenres;
         });

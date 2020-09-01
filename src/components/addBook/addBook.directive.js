@@ -49,6 +49,7 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
     });
 
     function initializeNewBook(){
+        validationService.resetValidations();
         $scope.newBook = booksService.getNewBook(true);
     }
 

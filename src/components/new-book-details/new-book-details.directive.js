@@ -44,16 +44,17 @@ function newBookDetailsController($scope, $timeout, booksService, stepsService, 
 
     let typingTimeout;
     $scope.$watch('book', () => {
-
         $timeout.cancel(typingTimeout);
-
         typingTimeout = $timeout(() => {
             validationService.updateValidation($scope.newBookDetails.every(detail => {
-                const existingValue = $scope.book[camelCaseFilter(detail.label)];
-                return existingValue && existingValue.length;
+                const detailName = camelCaseFilter(detail.label);
+                const existingValue = $scope.book[detailName];
+
+                return (detailName === 'description' && !$scope.needDescription())
+                        ? true
+                        : existingValue && existingValue.length;
             }))
         }, 750)
-
     }, true);
 
     $scope.$on(stepsService.EVENTS.ON_NEXT, () => {
