@@ -1,7 +1,11 @@
 <div class="add-book-container">
-    <div class="inner">
+    <mui-panel class="inner mui--z3">
         <header>
-            <h2>Add book - new book</h2>
+            <h2>
+                <strong>
+                    Add new book
+                </strong>
+            </h2>
             <step-indicator></step-indicator>
         </header>
 
@@ -32,12 +36,13 @@
                 </h1>
             </div>
         </main>
+
         <footer>
-            <button ng-repeat="direction in ['prev', 'next']" ng-click="move(direction)"
-                    ng-if="getStep()[direction] !== false" class="move-button"
-                    ng-disabled="!getStep()[direction]" ng-class="{'disabled': !getStep()[direction]}">
+            <mui-button size="small" color="primary" ng-repeat="direction in ['prev', 'next']"
+                        ng-click="move(direction)" ng-class="{'disabled': !getStep()[direction]}"
+                        ng-if="getStep()[direction] !== false" ng-disabled="!getStep()[direction]">
                 {{direction}}
-            </button>
+            </mui-button>
         </footer>
-    </div>
+    </mui-panel>
 </div>

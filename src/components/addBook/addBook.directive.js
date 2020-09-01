@@ -10,6 +10,7 @@ function addBookController($scope, genreService, booksService, stepsService){
     $scope.steps = {
         genre: {
             start: true,
+            prev: false,
             next: 'subgenre'
         },
         subgenre: {

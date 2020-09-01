@@ -10,27 +10,39 @@
     align-items: center;
 
     .inner {
-        background-color: white;
         border-radius: 4ch;
         width: 70%;
         min-height: 70%;
+        display: flex;
+        flex-direction: column;
 
         header {
-            border: 1px solid red;
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+
+            h2 {
+                flex: 1;
+                margin: 0;
+                margin-top: 1%;
+                display: flex;
+                align-items: center;
+            }
+            step-indicator {
+                flex: 2;
+            }
         }
 
         main {
-            border: 2px solid blue;
+            border: 2px solid deeppink;
+            flex: 10;
         }
 
         footer {
-            .move-button {
-                background-color: blue;
-
-                &.disabled {
-                    background-color: red;
-                }
-            }
+            flex: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
         }
     }
 
