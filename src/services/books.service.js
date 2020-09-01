@@ -1,8 +1,13 @@
 angular.module('library-add-book')
-.factory('booksService', ['backendService', booksService]);
+.factory('booksService', ['$rootScope', 'backendService', booksService]);
 
-function booksService(backendService){
+function booksService($rootScope, backendService){
     let allBooks = [];
+    let newBook = {};
+
+    const EVENTS = {
+        'ON_NEW_BOOK': 'on-new-book'
+    };
 
     function getAllBooks(){
         return backendService.get('books').then(allBooksResponse => {
@@ -11,17 +16,35 @@ function booksService(backendService){
         });
     }
 
-    function postNewBook(newBookData){
-        return backendService.post('books', newBookData);
+    function postNewBook(){
+        return backendService.post('books', newBook).then(res => {
+            $rootScope.$broadcast(EVENTS.ON_NEW_BOOK, newBook)
+        });
     }
 
     const getPublishers = backendService.get.bind(null, 'publishers');
     const getAuthors = backendService.get.bind(null, 'authors');
 
+    function appendToNewBook(prop, value){
+        newBook[prop] = value;
+    }
+
+    function getNewBook(shouldReset){
+
+        if(shouldReset){
+            newBook = {};
+        }
+
+        return newBook;
+    }
+
     return {
         getAllBooks,
         postNewBook,
         getPublishers,
-        getAuthors
+        getAuthors,
+        appendToNewBook,
+        getNewBook,
+        EVENTS
     }
 }

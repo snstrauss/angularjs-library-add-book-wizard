@@ -12,7 +12,12 @@ function booksListController($scope, booksService){
     $scope.showAddBookWizard = false;
 
     function init(){
+        refreshBooks();
+    }
 
+    $scope.$on(booksService.EVENTS.ON_NEW_BOOK, refreshBooks);
+
+    function refreshBooks(){
         booksService.getAllBooks().then(allBooks => {
             $scope.list = allBooks;
         });

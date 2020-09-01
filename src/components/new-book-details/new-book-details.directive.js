@@ -2,9 +2,6 @@
 APP.directive('newBookDetails', () => ({
     restrict: 'E',
     templateUrl: 'src/components/new-book-details/new-book-details.template.html',
-    scope: {
-        book: '='
-    },
     controller: ['$scope', '$q', 'booksService', 'stepsService', 'camelCaseFilter', newBookDetailsController]
 }));
 
@@ -13,6 +10,9 @@ function newBookDetailsController($scope, $q, booksService, stepsService, camelC
     $scope.camelCase = camelCaseFilter;
 
     function init(){
+
+        $scope.book = booksService.getNewBook();
+
         $q.all([booksService.getPublishers(), booksService.getAuthors()]).then(([publishers, authors]) => {
             $scope.newBookDetails = [{
                 label: 'book title',
@@ -54,7 +54,7 @@ function newBookDetailsController($scope, $q, booksService, stepsService, camelC
         $scope.book.genre = $scope.book.genre.name;
         $scope.book.subgenre = $scope.book.subgenre.name;
 
-        booksService.postNewBook($scope.book);
+        booksService.postNewBook();
     });
 
     init();

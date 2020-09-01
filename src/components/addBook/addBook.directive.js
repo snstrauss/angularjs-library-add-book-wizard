@@ -36,6 +36,16 @@ function addBookController($scope, genreService, booksService, stepsService){
     $scope.newBook = {};
     $scope.getStep = stepsService.getCurrentStep;
 
+    $scope.$watch($scope.getStep, (newStep) => {
+        if(newStep.name === 'genre'){
+            initializeNewBook();
+        }
+    });
+
+    function initializeNewBook(){
+        $scope.newBook = booksService.getNewBook(true);
+    }
+
     function init(){
         stepsService.init($scope.steps);
         $scope.currentStep = $scope.getStep();
@@ -53,7 +63,7 @@ function addBookController($scope, genreService, booksService, stepsService){
     }
 
     $scope.addToSelection = function addToSelection(type, value){
-        $scope.newBook[type] = value;
+        booksService.appendToNewBook(type, value);
         $scope.move('next');
     };
 
