@@ -1,5 +1,10 @@
-<div class="step-indicator">
-    <div ng-repeat="step in stepsArr" ng-if="!step.isAlt || isCurrentStep(step)" class="step" ng-class="{'current': isCurrentStep(step)}">
-        {{step.display}}
+<div ng-repeat="step in stepsArr" ng-if="!step.isAlt || isCurrentStep(step)"
+    class="step" ng-class="{'current': isCurrentStep(step)}"
+    style="--sep-width-perc: {{isCurrentStep({name: 'add'}) ? 40 : 70}}">
+    <div class="index">{{$index}}</div>
+    <div class="name">
+        <strong>
+            {{step.display}}
+        </strong>
     </div>
 </div>
