@@ -15,6 +15,7 @@
   width: 70%;
   display: flex;
   flex-direction: column;
+  max-height: 70vh;
   --margin: 1.5rem;
 }
 
@@ -38,7 +39,7 @@
 
 .add-book-container .inner main {
   flex: 10;
-  padding: 8% 5%;
+  padding: 5%;
 }
 
 .add-book-container .inner footer {
@@ -149,56 +150,72 @@ step-indicator .step:not(:last-child)::after {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(10, 1fr);
+  max-height: 35vh;
+  overflow-y: scroll;
 }
 
 .new-book-details .bookTitle {
   grid-row: 1;
   grid-column: 1 / 4;
+  position: relative;
 }
 
 .new-book-details .author {
   grid-row: 2;
   grid-column: 1 / 4;
+  position: relative;
 }
 
 .new-book-details .ISBN {
   grid-row: 3;
   grid-column: 1 / 4;
+  position: relative;
 }
 
 .new-book-details .publisher {
   grid-row: 4;
   grid-column: 1 / 4;
+  position: relative;
 }
 
 .new-book-details .datePublished {
   grid-row: 5;
   grid-column: 1;
+  position: relative;
 }
 
 .new-book-details .numberOfPages {
   grid-row: 6;
   grid-column: 1;
+  position: relative;
 }
 
 .new-book-details .format {
   grid-row: 7;
   grid-column: 1;
+  position: relative;
 }
 
 .new-book-details .edition {
   grid-row: 8;
   grid-column: 1;
+  position: relative;
 }
 
 .new-book-details .editionLanguage {
   grid-row: 8;
   grid-column: 2;
+  position: relative;
 }
 
 .new-book-details .description {
   grid-row: 9 / 11;
   grid-column: 1 / 4;
+  position: relative;
+}
+
+.new-book-details .mui-textfield {
+  margin: 0 0.5vw 0.5vh 0;
 }
 
 .new-book-details .description textarea {
@@ -210,6 +227,7 @@ step-indicator .step:not(:last-child)::after {
   --primary: #2196F3;
   --text: rgba(0, 0, 0, 0.8);
   --grey: #777;
+  --light-grey: #C5C5C5;
   color: var(--text);
 }
 

@@ -5,6 +5,8 @@ APP.directive('newBookDetails', () => ({
     controller: ['$scope', '$q', 'booksService', 'stepsService', 'camelCaseFilter', newBookDetailsController]
 }));
 
+const mapJustName = (item) => item.name;
+
 function newBookDetailsController($scope, $q, booksService, stepsService, camelCaseFilter){
 
     $scope.camelCase = camelCaseFilter;
@@ -15,40 +17,35 @@ function newBookDetailsController($scope, $q, booksService, stepsService, camelC
 
         $q.all([booksService.getPublishers(), booksService.getAuthors()]).then(([publishers, authors]) => {
             $scope.newBookDetails = [{
-                label: 'book title',
+                label: 'book title'
             },{
-                label: 'author',
-                type: 'select',
-                collection: authors
+                label: 'author'
             },{
                 label: 'ISBN',
             },{
-                label: 'publisher',
-                type: 'select',
-                collection: publishers
+                label: 'publisher'
             },{
-                label: 'date published',
-                type: 'date'
+                label: 'date published'
             },{
                 label: 'number of pages',
                 type: 'number'
             },{
-                label: 'format',
-                type: 'select',
-                collection: ['Hard cover', 'Soft cover']
+                label: 'format'
             },{
                 label: 'edition',
                 type: 'number'
             },{
-                label: 'edition language',
-                type: 'select',
-                collection: ["Dutch", "Amharic", "Hebrew", "Hindi", "French", "Bosnian", "Dzongkha"]
+                label: 'edition language'
             },{
                 label: 'description',
                 type: 'textarea'
             }];
         });
     }
+
+    $scope.selectionClicked = function selectionClicked(type, value){
+        $scope.book[type] = value;
+    };
 
     $scope.$on(stepsService.EVENTS.ON_NEXT, () => {
         $scope.book.genre = $scope.book.genre.name;

@@ -1,9 +1,9 @@
 .new-book-details {
-    // border: 5px solid deeppink;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(10, 1fr);
+    max-height: 35vh;
+    overflow-y: scroll;
 
     $full: #{"1 / 4"};
     $lastTwoRows: #{"9 / 11"};
@@ -40,7 +40,12 @@
         .#{$className} {
             grid-row: map-get($values, 'row') or $index;
             grid-column: map-get($values, 'column') or 1;
+            position: relative;
         }
+    }
+
+    .mui-textfield {
+        margin: 0 0.5vw 0.5vh 0;
     }
 
     .description {

@@ -1,7 +1,7 @@
+
 <form class="new-book-details">
     <label ng-repeat="detail in newBookDetails" class="{{detail.label | camelCase}}">
-        {{detail.label | capitalize}}
-        <input ng-if="detail.type !== 'textarea'" type="{{detail.type || 'text'}}" ng-model="book[camelCase(detail.label)]">
-        <textarea ng-if="detail.type === 'textarea'" ng-model="book[camelCase(detail.label)]"></textarea>
-    </label>
+        <mui-input ng-if="detail.type !== 'textarea'" label="{{detail.label | capitalize}}" ng-model="book[camelCase(detail.label)]" float-label></mui-input>
+        <mui-textarea ng-if="detail.type === 'textarea'" label="{{detail.label | capitalize}}" ng-model="book[camelCase(detail.label)]" float-label></mui-textarea>
+    </label >
 </form>
