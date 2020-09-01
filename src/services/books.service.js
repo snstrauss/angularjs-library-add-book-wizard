@@ -22,9 +22,6 @@ function booksService($rootScope, backendService){
         });
     }
 
-    const getPublishers = backendService.get.bind(null, 'publishers');
-    const getAuthors = backendService.get.bind(null, 'authors');
-
     function appendToNewBook(prop, value){
         newBook[prop] = value;
     }
@@ -41,8 +38,6 @@ function booksService($rootScope, backendService){
     return {
         getAllBooks,
         postNewBook,
-        getPublishers,
-        getAuthors,
         appendToNewBook,
         getNewBook,
         EVENTS

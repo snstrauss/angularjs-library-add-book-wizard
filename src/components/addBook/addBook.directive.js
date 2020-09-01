@@ -51,7 +51,9 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
         stepsService.init($scope.steps);
         $scope.currentStep = $scope.getStep();
 
+        $scope.doneLoading = false;
         genreService.getAllGenres().then(allGenresResponse => {
+            $scope.doneLoading = true;
             $scope.allGenres = allGenresResponse;
         });
     }

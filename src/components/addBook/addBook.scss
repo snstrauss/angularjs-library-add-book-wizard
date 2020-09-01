@@ -50,4 +50,18 @@
         }
     }
 
+    .loading-spinner {
+        height: unset !important;
+    }
+
+    .done {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        svg {
+            color: var(--primary);
+            font-size: 12rem;
+        }
+    }
 }

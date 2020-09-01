@@ -51,6 +51,42 @@
   margin-right: var(--margin);
 }
 
+.add-book-container .loading-spinner {
+  height: unset !important;
+}
+
+.add-book-container .done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-book-container .done svg {
+  color: var(--primary);
+  font-size: 12rem;
+}
+
+.no-books {
+  height: 70vh;
+  display: grid;
+  place-items: center;
+}
+
+.no-books svg {
+  font-size: 15rem;
+  color: firebrick;
+}
+
+.no-books p {
+  color: var(--text);
+  font-size: 2rem;
+  text-align: center;
+}
+
+.books-list {
+  height: 100%;
+}
+
 .books-list .mui-appbar {
   display: flex;
   align-items: center;
@@ -61,6 +97,10 @@
 .books-list .mui-appbar .mui-btn {
   color: white;
   font-size: 3em;
+}
+
+.books-list .loading-spinner {
+  height: 70vh;
 }
 
 .new-subgenre {
@@ -150,6 +190,7 @@ step-indicator .step:not(:last-child)::after {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(10, 1fr);
+  min-height: 10vh;
   max-height: 35vh;
   overflow-y: scroll;
 }
@@ -221,6 +262,13 @@ step-indicator .step:not(:last-child)::after {
 .new-book-details .description textarea {
   width: 100%;
   height: 100%;
+}
+
+.new-book-details .loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 :root {

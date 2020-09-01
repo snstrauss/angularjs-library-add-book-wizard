@@ -9,7 +9,8 @@
             <step-indicator></step-indicator>
         </header>
 
-        <main>
+        <loading-spinner ng-if="!doneLoading"></loading-spinner>
+        <main ng-if="doneLoading">
             <div ng-if="allGenres.length" ng-switch="getStep().name">
                 <selection-list ng-switch-when="genre"
                                 list="allGenres"
@@ -32,8 +33,9 @@
                 </new-subgenre>
                 <new-book-details ng-switch-when="information">
                 </new-book-details>
-                <h1 ng-switch-when="done">
-                    DONE
+                <h1 class="done" ng-switch-when="done">
+                    <span class="iconify" data-icon="clarity:success-standard-solid" data-inline="false"></span>
+                    Book Added Successfully
                 </h1>
             </div>
         </main>

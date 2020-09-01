@@ -15,32 +15,30 @@ function newBookDetailsController($scope, $q, booksService, stepsService, camelC
 
         $scope.book = booksService.getNewBook();
 
-        $q.all([booksService.getPublishers(), booksService.getAuthors()]).then(([publishers, authors]) => {
-            $scope.newBookDetails = [{
-                label: 'book title'
-            },{
-                label: 'author'
-            },{
-                label: 'ISBN',
-            },{
-                label: 'publisher'
-            },{
-                label: 'date published'
-            },{
-                label: 'number of pages',
-                type: 'number'
-            },{
-                label: 'format'
-            },{
-                label: 'edition',
-                type: 'number'
-            },{
-                label: 'edition language'
-            },{
-                label: 'description',
-                type: 'textarea'
-            }];
-        });
+        $scope.newBookDetails = [{
+            label: 'book title'
+        },{
+            label: 'author'
+        },{
+            label: 'ISBN',
+        },{
+            label: 'publisher'
+        },{
+            label: 'date published'
+        },{
+            label: 'number of pages',
+            type: 'number'
+        },{
+            label: 'format'
+        },{
+            label: 'edition',
+            type: 'number'
+        },{
+            label: 'edition language'
+        },{
+            label: 'description',
+            type: 'textarea'
+        }];
     }
 
     $scope.selectionClicked = function selectionClicked(type, value){

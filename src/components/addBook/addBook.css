@@ -50,3 +50,18 @@
   margin-left: var(--margin);
   margin-right: var(--margin);
 }
+
+.add-book-container .loading-spinner {
+  height: unset !important;
+}
+
+.add-book-container .done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-book-container .done svg {
+  color: var(--primary);
+  font-size: 12rem;
+}

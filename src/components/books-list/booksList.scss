@@ -1,4 +1,5 @@
 .books-list {
+    height: 100%;
     .mui-appbar {
         display: flex;
         align-items: center;
@@ -9,5 +10,9 @@
             color: white;
             font-size: 3em;
         }
+    }
+
+    .loading-spinner {
+        height: 70vh;
     }
 }

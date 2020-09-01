@@ -18,14 +18,16 @@ function booksListController($scope, booksService){
     $scope.$on(booksService.EVENTS.ON_NEW_BOOK, refreshBooks);
 
     function refreshBooks(){
+        $scope.doneLoading = false;
         booksService.getAllBooks().then(allBooks => {
             $scope.list = allBooks;
+            $scope.doneLoading = true;
         });
     }
 
     $scope.addBook = function addBook(){
         $scope.showAddBookWizard = true;
-    }
+    };
 
     init();
 }

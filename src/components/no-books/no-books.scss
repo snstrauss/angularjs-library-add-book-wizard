@@ -1,0 +1,16 @@
+.no-books {
+    height: 70vh;
+    display: grid;
+    place-items: center;
+
+    svg {
+        font-size: 15rem;
+        color: firebrick;
+    }
+
+    p {
+        color: var(--text);
+        font-size: 2rem;
+        text-align: center;
+    }
+}
