@@ -4,6 +4,9 @@ to run:
 $ npm install
 $ npm run dev
 ```
--- OR --
+---
+A small example web app, for managing a basic books collection.
 
-See it live, on [Github Pages](https://snstrauss.github.io/angularjs-library-add-book-wizard/)!
+- New books can be added, with meta data and genres.
+- New sub-genres can be created.
+- Data is stored on a free JSON hosting service - [jsonbox](https://jsonbox.io/).
