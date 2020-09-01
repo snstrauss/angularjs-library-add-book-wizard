@@ -1,4 +1,4 @@
+const APP = angular.module('library-add-book', ['mui']);
 
-const APP = angular.module('library-add-book', []);
 
 
