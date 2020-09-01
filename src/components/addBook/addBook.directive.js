@@ -2,10 +2,10 @@
 APP.directive('addBook', () => ({
     restrict: 'E',
     templateUrl: 'src/components/addBook/addBook.template.html',
-    controller: ['$scope', 'genreService', 'booksService', 'stepsService', addBookController]
+    controller: ['$scope', '$timeout', 'genreService', 'booksService', 'stepsService', addBookController]
 }));
 
-function addBookController($scope, genreService, booksService, stepsService){
+function addBookController($scope, $timeout, genreService, booksService, stepsService){
 
     $scope.steps = {
         genre: {
@@ -69,7 +69,14 @@ function addBookController($scope, genreService, booksService, stepsService){
     };
 
     $scope.openNewSubGenre = function openNewSubGenre(){
-        stepsService.goToStep('add');
+
+        // debugger;
+
+        $scope.clickedAddSubgenre = true;
+
+        $timeout(() => {
+            stepsService.goToStep('add');
+        }, 500)
     };
 
     init();

@@ -10,33 +10,32 @@
         </header>
 
         <main>
-            <mui-panel>
-                <div ng-if="allGenres.length" ng-switch="getStep().name">
-                    <selection-list ng-switch-when="genre"
-                                    list="allGenres"
-                                    on-select="addToSelection"
-                                    selection-type="genre"
-                                    display-prop="name">
-                    </selection-list>
-                    <selection-list ng-switch-when="subgenre"
-                                    list="newBook.genre.subgenres"
-                                    on-select="addToSelection"
-                                    selection-type="subgenre"
-                                    display-prop="name"
-                                    extra-selection="{
-                                        display: 'Add new',
-                                        action: openNewSubGenre
-                                    }">
-                    </selection-list>
-                    <new-subgenre ng-switch-when="add" parent-genre="newBook.genre">
-                    </new-subgenre>
-                    <new-book-details ng-switch-when="information">
-                    </new-book-details>
-                    <h1 ng-switch-when="done">
-                        DONE
-                    </h1>
-                </div>
-            </mui-panel>
+            <div ng-if="allGenres.length" ng-switch="getStep().name">
+                <selection-list ng-switch-when="genre"
+                                list="allGenres"
+                                on-select="addToSelection"
+                                selection-type="genre"
+                                display-prop="name">
+                </selection-list>
+                <selection-list ng-switch-when="subgenre"
+                                list="newBook.genre.subgenres"
+                                on-select="addToSelection"
+                                selection-type="subgenre"
+                                display-prop="name"
+                                extra-selection="{
+                                    display: 'Add new',
+                                    action: openNewSubGenre,
+                                    className: clickedAddSubgenre ? 'selected' : ''
+                                }">
+                </selection-list>
+                <new-subgenre ng-switch-when="add" parent-genre="newBook.genre">
+                </new-subgenre>
+                <new-book-details ng-switch-when="information">
+                </new-book-details>
+                <h1 ng-switch-when="done">
+                    DONE
+                </h1>
+            </div>
         </main>
 
         <footer>

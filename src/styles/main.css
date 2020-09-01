@@ -65,7 +65,6 @@
 .selection-list form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25ch, max-content));
-  /* grid-gap: 0rem; */
   justify-content: center;
 }
 

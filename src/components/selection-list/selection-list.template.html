@@ -6,7 +6,7 @@
             </mui-button>
         </label>
         <label ng-if="extraSelection">
-            <mui-button variant="flat" ng-click="extraSelection.action()">
+            <mui-button variant="flat" ng-click="extraSelection.action()" class="{{extraSelection.className}}">
                 {{extraSelection.display}}
             </mui-button>
         </label>
