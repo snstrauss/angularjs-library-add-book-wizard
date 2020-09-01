@@ -1,1 +1,1 @@
-.selection-list{border:2px solid green}.selection-list .item{border:1px solid purple}
+.selection-list form{display:grid;grid-template-columns:repeat(auto-fit, minmax(25ch, max-content));justify-content:center}.selection-list form label{width:25ch;height:10vh;display:grid;place-items:center}.selection-list form label .mui-btn{border:1px solid var(--primary);color:var(--primary);min-width:21ch}.selection-list form label .mui-btn.selected{background-color:var(--primary);color:white}

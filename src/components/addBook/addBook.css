@@ -13,9 +13,9 @@
 .add-book-container .inner {
   border-radius: 4ch;
   width: 70%;
-  min-height: 70%;
   display: flex;
   flex-direction: column;
+  --margin: 1.5rem;
 }
 
 .add-book-container .inner header {
@@ -26,10 +26,10 @@
 
 .add-book-container .inner header h2 {
   flex: 1;
-  margin: 0;
-  margin-top: 1%;
   display: flex;
   align-items: center;
+  margin-left: var(--margin);
+  margin-right: var(--margin);
 }
 
 .add-book-container .inner header step-indicator {
@@ -37,8 +37,8 @@
 }
 
 .add-book-container .inner main {
-  border: 2px solid deeppink;
   flex: 10;
+  padding: 8%;
 }
 
 .add-book-container .inner footer {
@@ -46,4 +46,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-left: var(--margin);
+  margin-right: var(--margin);
 }

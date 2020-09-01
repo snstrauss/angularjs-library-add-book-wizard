@@ -9,11 +9,17 @@ APP.directive('selectionList', () => ({
         selectionType: '@',
         extraSelection: '='
     },
-    controller: ['$scope', selectionListController]
+    controller: ['$scope', '$timeout',selectionListController]
 }));
 
-function selectionListController($scope){
+function selectionListController($scope, $timeout){
 
-    $scope.typedSelection = $scope.onSelect.bind(null, $scope.selectionType);
+    $scope.typedSelection = function typedSelection(item, idx){
+        $scope.selected = idx;
+        $timeout(() => {
+            $scope.onSelect($scope.selectionType, item);
+        }, 500);
+    }
+
 
 }

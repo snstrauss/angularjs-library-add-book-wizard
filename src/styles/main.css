@@ -13,9 +13,9 @@
 .add-book-container .inner {
   border-radius: 4ch;
   width: 70%;
-  min-height: 70%;
   display: flex;
   flex-direction: column;
+  --margin: 1.5rem;
 }
 
 .add-book-container .inner header {
@@ -26,10 +26,10 @@
 
 .add-book-container .inner header h2 {
   flex: 1;
-  margin: 0;
-  margin-top: 1%;
   display: flex;
   align-items: center;
+  margin-left: var(--margin);
+  margin-right: var(--margin);
 }
 
 .add-book-container .inner header step-indicator {
@@ -37,8 +37,8 @@
 }
 
 .add-book-container .inner main {
-  border: 2px solid deeppink;
   flex: 10;
+  padding: 8%;
 }
 
 .add-book-container .inner footer {
@@ -46,6 +46,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-left: var(--margin);
+  margin-right: var(--margin);
 }
 
 .books-list .mui-appbar {
@@ -60,12 +62,29 @@
   font-size: 3em;
 }
 
-.selection-list {
-  border: 2px solid green;
+.selection-list form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25ch, max-content));
+  /* grid-gap: 0rem; */
+  justify-content: center;
 }
 
-.selection-list .item {
-  border: 1px solid purple;
+.selection-list form label {
+  width: 25ch;
+  height: 10vh;
+  display: grid;
+  place-items: center;
+}
+
+.selection-list form label .mui-btn {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  min-width: 21ch;
+}
+
+.selection-list form label .mui-btn.selected {
+  background-color: var(--primary);
+  color: white;
 }
 
 step-indicator {
@@ -100,7 +119,7 @@ step-indicator .step .name {
   color: var(--text);
   text-align: center;
   position: absolute;
-  top: 80%;
+  top: 100%;
 }
 
 step-indicator .step.current .index {

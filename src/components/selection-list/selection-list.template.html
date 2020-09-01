@@ -1,8 +1,14 @@
 <div class="selection-list">
-    <button class="item" ng-repeat="item in list" ng-click="typedSelection(item)">
-        {{item[displayProp]}}
-    </button>
-    <button ng-if="extraSelection" ng-click="extraSelection.action()">
-        {{extraSelection.display}}
-    </button>
+    <form>
+        <label ng-repeat="item in list">
+            <mui-button variant="flat" ng-click="typedSelection(item, $index)" ng-class="{'selected': $index === selected}">
+                {{item[displayProp]}}
+            </mui-button>
+        </label>
+        <label ng-if="extraSelection">
+            <mui-button variant="flat" ng-click="extraSelection.action()">
+                {{extraSelection.display}}
+            </mui-button>
+        </label>
+    </form>
 </div>

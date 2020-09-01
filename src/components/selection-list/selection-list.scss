@@ -1,7 +1,25 @@
 .selection-list {
-    border: 2px solid green;
+    form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(25ch, max-content));
+        justify-content: center;
 
-    .item {
-        border: 1px solid purple;
+        label {
+            width: 25ch;
+            height: 10vh;
+            display: grid;
+            place-items: center;
+
+            .mui-btn {
+                border: 1px solid var(--primary);
+                color: var(--primary);
+                min-width: 21ch;
+
+                &.selected {
+                    background-color: var(--primary);
+                    color: white;
+                }
+            }
+        }
     }
 }
