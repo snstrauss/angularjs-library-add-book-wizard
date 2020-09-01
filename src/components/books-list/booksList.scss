@@ -1,0 +1,13 @@
+.books-list {
+    .mui-appbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1%;
+
+        .mui-btn {
+            color: white;
+            font-size: 3em;
+        }
+    }
+}

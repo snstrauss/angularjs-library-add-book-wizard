@@ -1,9 +1,30 @@
-<div class="books-list">
-    i am the list:
-    <h2 ng-repeat="book in list">
-        book: {{book.bookTitle}}
-    </h2>
-    <button ng-click="addBook()">add book</button>
+<mui-container fluid>
+    <!-- fluid -->
+    <div class="books-list">
+        <mui-appbar>
+            <h1>Books List</h1>
+            <mui-button ng-click="addBook()" color="primary ">+</mui-button>
+        </mui-appbar>
 
-    <add-book ng-if="showAddBookWizard"></add-book>
-</div>
+        <table class="mui-table mui-table--bordered">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Subgenre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in list">
+                    <td><strong> {{book.bookTitle}}</strong></td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.genre}}</td>
+                    <td>{{book.subgenre}}</td>
+                </tr>
+            </tbody>
+        </table >
+
+        <add-book ng-if="showAddBookWizard"></add-book>
+    </div>
+</mui-container>

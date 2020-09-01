@@ -3,3 +3,16 @@
 @import '../components/selection-list/selection-list.scss';
 @import '../components/step-indicator/step-indicator.scss';
 @import '../components/new-book-details/new-book-details.scss';
+
+:root {
+    --primary: #2196F3;
+    --text: rgba(0, 0, 0, 0.8);
+    --grey: #777;
+
+    color: var(--text);
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
