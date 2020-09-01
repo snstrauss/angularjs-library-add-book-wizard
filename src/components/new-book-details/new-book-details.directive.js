@@ -12,7 +12,6 @@ function newBookDetailsController($scope, $timeout, booksService, stepsService, 
 
     $scope.camelCase = camelCaseFilter;
 
-    const detailNames = [];
     function init(){
 
         $scope.book = booksService.getNewBook();
@@ -63,6 +62,10 @@ function newBookDetailsController($scope, $timeout, booksService, stepsService, 
 
         booksService.postNewBook();
     });
+
+    $scope.needDescription = function needDescription(){
+        return booksService.getNewBook().subgenre.isDescriptionRequired;
+    };
 
     init();
 }
