@@ -29,11 +29,13 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
         },
         information: {
             prev: 'subgenre',
-            next: 'done'
+            next: 'done',
+            nextButtonText: 'Complete'
         },
         done: {
             prev: false,
-            next: 'genre'
+            next: 'genre',
+            nextButtonText: 'New Book'
         }
     };
 
@@ -89,6 +91,14 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
         return $scope.getStep().name !== 'done'
                 && direction === 'next'
                 && !validationService.isCurrentStepValid();
+    };
+
+    const buttonTexts = {
+        prev: 'Back',
+        next: 'Next'
+    }
+    $scope.getButtonText = function getButtonText(direction){
+        return $scope.getStep()[`${direction}ButtonText`] || buttonTexts[direction];
     }
 
     init();
