@@ -38,7 +38,7 @@
 
 .add-book-container .inner main {
   flex: 10;
-  padding: 8%;
+  padding: 8% 5%;
 }
 
 .add-book-container .inner footer {
@@ -62,28 +62,14 @@
   font-size: 3em;
 }
 
-.selection-list form {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25ch, max-content));
-  justify-content: center;
+.new-subgenre {
+  display: flex;
+  flex-direction: column;
 }
 
-.selection-list form label {
-  width: 25ch;
-  height: 10vh;
-  display: grid;
-  place-items: center;
-}
-
-.selection-list form label .mui-btn {
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  min-width: 21ch;
-}
-
-.selection-list form label .mui-btn.selected {
-  background-color: var(--primary);
-  color: white;
+.new-subgenre input[type="text"] {
+  font-size: 1.5rem;
+  padding: 2%;
 }
 
 step-indicator {
@@ -133,6 +119,30 @@ step-indicator .step:not(:last-child)::after {
   top: 50%;
   left: 80%;
   width: calc(var(--sep-width-perc) * 1%);
+}
+
+.selection-list form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25ch, max-content));
+  justify-content: center;
+}
+
+.selection-list form label {
+  width: 25ch;
+  height: 10vh;
+  display: grid;
+  place-items: center;
+}
+
+.selection-list form label .mui-btn {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  min-width: 21ch;
+}
+
+.selection-list form label .mui-btn.selected {
+  background-color: var(--primary);
+  color: white;
 }
 
 .new-book-details {

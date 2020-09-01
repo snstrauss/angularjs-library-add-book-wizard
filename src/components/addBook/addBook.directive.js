@@ -69,13 +69,10 @@ function addBookController($scope, $timeout, genreService, booksService, stepsSe
     };
 
     $scope.openNewSubGenre = function openNewSubGenre(){
-
-        // debugger;
-
         $scope.clickedAddSubgenre = true;
-
         $timeout(() => {
             stepsService.goToStep('add');
+            $scope.clickedAddSubgenre = false;
         }, 500)
     };
 
