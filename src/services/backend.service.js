@@ -1,15 +1,19 @@
 angular.module('library-add-book')
-.factory('backendService', ['$http', backendService]);
+.factory('backendService', ['$http', 'mockDbService', backendService]);
 
 const BASE_URL = "https://jsonbox.io";
 const JSON_BOX_ID = "box_30a9248ec8b716588c4f";
-const COLLECTIONS = ['books', 'genres', 'authors', 'publishers'];
+const COLLECTIONS = ['books', 'genres'];
 
 
 const NO_COLLECTION_ERROR = 'No such collection exists';
 const isCollection = (collection) => COLLECTIONS.includes(collection);
 
-function backendService($http){
+/**
+ * This service was originally using a jsonBox instance as a simplistic DB,
+ * but this service is down for maintenance, the service will now use a mock DB service.
+ */
+function backendService($http, mockDbService){
 
     function buildUrl(collection){
         return `${BASE_URL}/${JSON_BOX_ID}/${collection}`;
@@ -21,7 +25,9 @@ function backendService($http){
             return Promise.reject(NO_COLLECTION_ERROR);
         }
 
-        return $http.get(buildUrl(collection)).then(res => res.data);
+        return mockDbService.get(collection).then(res => {
+            return res;
+        });
 
     }
 
@@ -33,7 +39,7 @@ function backendService($http){
             return Promise.reject(NO_COLLECTION_ERROR);
         }
 
-        return $http.post(buildUrl(collection), data).then(res => res.data)
+        return mockDbService.add(collection, data);
     }
 
     function update(collection, newGenre){
@@ -41,7 +47,7 @@ function backendService($http){
         console.log(newGenre);
         console.log('- - - - - - - - - - - - -');
 
-        return $http.put(`${buildUrl(collection)}/${newGenre._id}`, newGenre);
+        return mockDbService.update(collection, newGenre.id, newGenre);
     }
 
     return {
